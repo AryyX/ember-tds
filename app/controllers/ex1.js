@@ -29,8 +29,10 @@ export default class Ex1Controller extends Controller {
     }
 
     @action
-    save(){
-        return this.info = '';
+    save(content){
+        let model = this.modelFor(this.routeName);
+        set (model, 'items', this.content.split('\n'));
+        this.transitionTo('ex1.suite');
     }
 
     @action
