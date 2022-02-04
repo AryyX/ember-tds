@@ -1,0 +1,16 @@
+{{page-title "Ex1"}}
+
+<h1>Ex 1 : Note Application</h1>
+<b>Note :</b><br>
+
+<Textarea  @value={{this.content}} maxlength={{this.max}} {{on "keypress" this.update}} ></Textarea><br>
+
+<div class='status'>Nombre de caractères restants : {{this.size}}</div>
+
+<div class={{this.style}}>Note {{this.info}}</div><br>
+
+<button {{on "click" this.clear}}> Effacer</button>
+<button {{on "click" this.save}}>Enregistrer</button>
+
+
+{{outlet}}
