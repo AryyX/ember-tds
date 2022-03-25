@@ -1,2 +1,27 @@
 {{page-title "Order"}}
+<button class="ui button brown" type="button" {{action "retour"}}>
+  Retour aux commandes à préparer
+</button>
+<br><br>
+<span class="ui label black"> {{@model.user.name}}  ({{@model.user.email}}) </span>
+<br><br>
+<span class="ui label"> {{@model.dateCreation}} </span>
+
+
+
+
+
+
+
+<h2>Produit préparés({{@model.count}})</h2>
+{{#each @model.product as |product|}}
+  {{#if @model.prepare}}
+    <LinkTo {{product.name}}>
+      {{product.name}} <span class="ui circular label">{{@model.count}}</span>
+
+
+    </LinkTo>
+    <button class="ui green button"><i class="ui check icon"></i> Valider pour {{@model.toPay}} </button>
+  {{/if}}
+{{/each}}
 {{outlet}}
