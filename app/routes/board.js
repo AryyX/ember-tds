@@ -1,6 +1,6 @@
-import Abstractroute from './Abstractroute';
+import Abstractroute from './AbstractRoute';
+import { action } from '@ember/object';
 import RSVP from 'rsvp';
-import { action } from '@ember/action';
 
 export default class BoardRoute extends Abstractroute {
   model() {
@@ -15,10 +15,6 @@ export default class BoardRoute extends Abstractroute {
       });
     }
   }
-
-  /*model() {
-    return this.userAuth.getUser();
-  }*/
 
   @action logout() {
     this.userAuth.logout();

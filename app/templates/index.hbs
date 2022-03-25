@@ -1,9 +1,13 @@
 {{page-title "Index"}}
+<hr style="color:#4BE023; height: 4px">
+
+<h2>Connexion</h2>
 
 <form {{action "login" @model on="submit"}}>
-  <Input type="email" @value={{@model.email}} placeholder="Votre email"/>
-  <Input type="password" @value={{@model.password}} placeholder="Votre mot de passe"/>
-  <button type="submit">Se connecter</button>
+  <div class="ui form">
+    <div class="required field"> <i class="user icon"></i><Input type="email" @value={{@model.email}} placeholder="Votre email" /></div><br>
+    <div class="required field"><i class="lock icon"></i><Input type="password" @value={{@model.password}} placeholder="Votre mot de passe" /></div><br>
+    <button class="ui black button" type="submit">Se connecter</button>
+  </div>
 </form>
-
 {{outlet}}
