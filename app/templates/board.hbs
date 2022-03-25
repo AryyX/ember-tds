@@ -8,9 +8,19 @@
 <ul>
   {{#each @model.orders as |order|}}
     <li>
+      {{#if order.prepare}}
+          <i class="ui check icon"></i>
+      {{else}}
+        <i class="hourglass outline yellow icon"></i>
+      {{/if}}
+
       <LinkTo @route="order" @model={{order.id}}>
         {{order.dateCreation}} <span class="ui circular label">{{order.count}}</span>
+        {{#if order.toPay}}
+          <label class="ui green label">{{order.toPay}}</label>
+        {{/if}}
       </LinkTo>
+
     </li>
   {{/each}}
 </ul>
