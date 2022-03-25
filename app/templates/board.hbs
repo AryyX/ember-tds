@@ -4,23 +4,31 @@
     Logout
   </button>
 </div>
-<h2>Orders</h2>
-<ul>
+
+<h2>Préparation des commandes</h2>
+<h3>Crées (en attente de préparation)</h3>
+
   {{#each @model.orders as |order|}}
-    <li>
-      {{#if order.prepare}}
-          <i class="ui check icon"></i>
-      {{else}}
+
+      {{#if order.created}}
         <i class="hourglass outline yellow icon"></i>
-      {{/if}}
 
       <LinkTo @route="order" @model={{order.id}}>
         {{order.dateCreation}} <span class="ui circular label">{{order.count}}</span>
-        {{#if order.toPay}}
-          <label class="ui green label">{{order.toPay}}</label>
-        {{/if}}
       </LinkTo>
+      {{/if}}
 
-    </li>
   {{/each}}
-</ul>
+
+  <h3>Préparées</h3>
+
+  {{#each @model.orders as |order|}}
+    {{#if order.prepare}}
+      <i class="green check  icon"></i>
+      <LinkTo @route="order" @model={{order.id}}>
+        {{order.dateCreation}} <span class="ui circular label">{{order.count}}</span>
+      </LinkTo>
+      <div class="ui green label">{{order.toPay}} € </div><br>
+    {{/if}}
+
+  {{/each}}

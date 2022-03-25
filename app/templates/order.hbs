@@ -7,52 +7,37 @@
 <br><br>
 <span class="ui label"> {{@model.dateCreation}} </span>
 
-<table class="ui celled table">
-  <thead>
-  <tr><th>Produit</th>
-    <th>Quantité</th>
-    <th>Prix</th>
-    <th>Montant</th>
-    <th>Preparation</th>
-  </tr></thead>
-  <tbody>
+
+<table class="ui table">
   <tr>
-    <td data-label="Produit">James</td>
-    <td data-label="Quantité">24</td>
-    <td data-label="Job">Engineer</td>
-    <td></td>
-    <td></td>
+    <td><b>Produit</b></td>
+    <td><b>Quantité</b></td>
+    <td><b>Prix</b></td>
+    <td><b>Montant</b></td>
+    <td><b>Preparation</b></td>
   </tr>
-  <tr>
-    <td data-label="Produit">Jill</td>
-    <td data-label="Age">26</td>
-    <td data-label="Job">Engineer</td>
-    <td></td>
-    <td></td>
-  </tr>
-  </tbody>
-  <tfoot>
+
+  {{#each @model.orderdetails as |details|}}
+    <tr >
+      <td>{{details.product.name}}</td>
+      <td>{{details.quantity}}</td>
+      <td>{{details.product.price}} €</td>
+      <td>{{details.amount}} €</td>
+      <td> <Input @type="checkbox" @checked={{details.prepared}} /> </td>
+    </tr>
+  {{/each}}
   <tr>
     <td></td>
     <td></td>
     <td></td>
-    <td></td>
-    <td></td>
+    <td>{{@model.amount}} €</td>
+    <td>{{@model.toPay}} €</td>
   </tr>
-  </tfoot>
+
 </table>
 
-
-
-<h2>Produit préparés({{@model.count}})</h2>
-{{#each @model.product as |product|}}
-  {{#if @model.prepare}}
-    <LinkTo {{product.name}}>
-      {{product.name}} <span class="ui circular label">{{@model.count}}</span>
-
-
-    </LinkTo>
-    <button class="ui green button"><i class="ui check icon"></i> Valider pour {{@model.toPay}} </button>
-  {{/if}}
+<h2>Produits préparés ({{@model.count}})</h2>
+{{#each @model.orderdetails as |details|}}
+  {{details.product.nom}}
 {{/each}}
 {{outlet}}
